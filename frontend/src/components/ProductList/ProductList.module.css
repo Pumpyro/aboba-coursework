@@ -1,0 +1,47 @@
+/* Контейнер для списка продуктов */
+.productList {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Сетка карточек */
+    gap: 20px; /* Расстояние между карточками */
+    padding: 20px;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  /* Контейнер для пагинации */
+  .pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px; /* Расстояние между кнопками */
+    margin-top: 20px;
+  }
+  
+  /* Кнопки пагинации */
+  .paginationButton {
+    padding: 8px 16px;
+    background-color: #007bff; /* Синий фон */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+  }
+  
+  .paginationButton:hover {
+    background-color: #0056b3; /* Темно-синий при наведении */
+    transform: translateY(-2px); /* Легкий подъем кнопки */
+  }
+  
+  .paginationButton:disabled {
+    background-color: #cccccc; /* Серый для отключенной кнопки */
+    cursor: not-allowed;
+  }
+  
+  /* Текущая страница */
+  .pagination span {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #333;
+  }
+  

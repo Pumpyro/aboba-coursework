@@ -1,0 +1,78 @@
+.card {
+  border: 1px solid #e0e0e0; /* Тонкая рамка */
+  border-radius: 8px; /* Скругленные углы */
+  padding: 16px; /* Внутренний отступ */
+  background-color: #ffffff; /* Белый фон */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Легкая тень */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.2s, box-shadow 0.2s;
+  cursor: pointer;
+}
+
+.card:hover {
+  transform: translateY(-5px); /* Легкое поднятие при наведении */
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15); /* Более сильная тень */
+}
+
+.image {
+  width: 100%;
+  max-width: 200px; /* Максимальная ширина изображения */
+  height: auto;
+  border-radius: 4px; /* Немного скругленные углы */
+  margin-bottom: 12px;
+}
+
+.details {
+  text-align: center;
+}
+
+.name {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #333;
+  margin: 8px 0;
+}
+
+.price {
+  font-size: 1rem;
+  color: #555;
+  margin: 8px 0;
+}
+
+.description {
+  font-size: 0.9rem;
+  color: #777;
+  margin: 8px 0;
+  height: 50px; /* Ограничение высоты */
+  overflow: hidden; /* Скрыть лишний текст */
+  text-overflow: ellipsis; /* Добавить многоточие */
+  white-space: nowrap; /* Обрезка текста в одну строку */
+}
+
+.btn {
+  margin-top: 12px;
+  padding: 10px 16px;
+  background-color: #4caf50; /* Зеленый фон */
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.btn:hover {
+  background-color: #45a049; /* Более темный зеленый при наведении */
+}
+
+.btn:active {
+  background-color: #3e8e41; /* Еще темнее при нажатии */
+}
+
+.btn:disabled {
+  background-color: #ccc;
+  cursor: default;
+}
