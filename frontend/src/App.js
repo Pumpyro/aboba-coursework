@@ -7,6 +7,7 @@ import LoginModal from "./components/LoginModal/LoginModal";
 import RegisterModal from "./components/RegisterModal/RegisterModal";
 import { AuthProvider } from "./contexts/AuthContext";
 import Footer from "./components/Footer/Footer";
+import { CartProvider } from "./contexts/CartContext";
 
 function App() {
   const [isLoginOpen, setLoginOpen] = React.useState(false);
@@ -14,21 +15,23 @@ function App() {
 
   return (
     <AuthProvider>
-      <Router>
-        <Header
-          onLoginClick={() => setLoginOpen(true)}
-          onRegisterClick={() => setRegisterOpen(true)}
-        />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/menu" element={<Menu />} />
-        </Routes>
-        {isLoginOpen && <LoginModal onClose={() => setLoginOpen(false)} />}
-        {isRegisterOpen && (
-          <RegisterModal onClose={() => setRegisterOpen(false)} />
-        )}
-        <Footer />
-      </Router>
+      <CartProvider>
+        <Router>
+          <Header
+            onLoginClick={() => setLoginOpen(true)}
+            onRegisterClick={() => setRegisterOpen(true)}
+          />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/menu" element={<Menu />} />
+          </Routes>
+          {isLoginOpen && <LoginModal onClose={() => setLoginOpen(false)} />}
+          {isRegisterOpen && (
+            <RegisterModal onClose={() => setRegisterOpen(false)} />
+          )}
+          <Footer />
+        </Router>
+      </CartProvider>
     </AuthProvider>
   );
 }
