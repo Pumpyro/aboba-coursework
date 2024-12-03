@@ -45,7 +45,7 @@ public class SecurityConfig {
             .cors().configurationSource(corsConfigurationSource())
             .and()
             .authorizeRequests()
-            .requestMatchers("/api/auth/login", "/api/auth/register", "/api/auth/refresh", "/api/products", "/images/**", "/static/**", "/api/payments/process", "/api/products/**").permitAll()
+            .requestMatchers("/api/auth/login", "/api/auth/register", "/api/auth/refresh", "/api/products", "/images/**", "/static/**", "/api/payments/process", "/api/products/**", "/api/account/change-password").permitAll()
             // .requestMatchers("/api/protected").hasRole("ADMIN")
             .anyRequest().authenticated()
             .and()

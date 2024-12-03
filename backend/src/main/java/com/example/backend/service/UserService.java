@@ -9,6 +9,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.example.backend.dto.PasswordChangeRequest;
 import com.example.backend.entity.Role;
 import com.example.backend.entity.User;
 import com.example.backend.repository.RoleRepository;
@@ -61,6 +62,26 @@ public class UserService implements UserDetailsService {
             throw new IllegalArgumentException("User not found");
         }
         return new UserDetailsImpl(user);
+    }
+
+
+
+     public void changeUserPassword(String username, PasswordChangeRequest request) {
+        User user = userRepository.findByUsername(username);
+
+        // Проверка текущего пароля
+        if (!passwordEncoder.matches(request.getCurrentPassword(), user.getPassword())) {
+            throw new IllegalArgumentException("Неверный текущий пароль");
+        }
+
+        // Проверка совпадения нового пароля и подтверждения
+        if (!request.getNewPassword().equals(request.getConfirmPassword())) {
+            throw new IllegalArgumentException("Новый пароль и подтверждение не совпадают");
+        }
+
+        // Обновление пароля
+        user.setPassword(passwordEncoder.encode(request.getNewPassword()));
+        userRepository.save(user);
     }
 
 }
