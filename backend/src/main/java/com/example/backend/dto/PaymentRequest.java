@@ -13,7 +13,6 @@ public class PaymentRequest {
     private String accountNumber;
     private String pinCode;
     private BigDecimal orderAmount;
-    private Long userId;
     private Map<Long, Integer> products;
 }
 

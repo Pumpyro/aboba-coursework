@@ -19,5 +19,13 @@ public class ProductService {
     public Page<Product> getProducts(Pageable pageable, Specification<Product> spec){
         return productRepository.findAll(spec, pageable);
     }
+
+    public Product saveProduct(Product product) {
+        return productRepository.save(product);
+    }
+
+    public void deleteProduct(Long productId) {
+        productRepository.deleteById(productId);
+    }
     
 }
