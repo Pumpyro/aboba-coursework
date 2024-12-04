@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.backend.dto.PasswordChangeRequest;
 import com.example.backend.dto.UpdateUserRequest;
-import com.example.backend.entity.User;
 import com.example.backend.service.UserService;
 
 import java.security.Principal;
