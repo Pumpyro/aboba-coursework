@@ -4,6 +4,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -82,6 +84,28 @@ public class UserService implements UserDetailsService {
         // Обновление пароля
         user.setPassword(passwordEncoder.encode(request.getNewPassword()));
         userRepository.save(user);
+    }
+
+    public User updateUserData(String firstName, String lastName, String phoneNumber) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName(); // Получение имени пользователя из SecurityContext
+        User user = userRepository.findByUsername(username);
+
+        if (user == null) {
+            throw new IllegalArgumentException("User not found");
+        }
+
+        if (firstName != null) {
+            user.setFirstName(firstName);
+        }
+        if (lastName != null) {
+            user.setLastName(lastName);
+        }
+        if (phoneNumber != null) {
+            user.setPhoneNumber(phoneNumber);
+        }
+
+        return userRepository.save(user);
     }
 
 }
