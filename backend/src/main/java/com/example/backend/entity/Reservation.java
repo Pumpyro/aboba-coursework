@@ -20,7 +20,13 @@ public class Reservation {
     private String customerName;
 
     @Column(nullable = false)
+    private String customerPhone;
+
+    @Column(nullable = false)
     private int numberOfPeople;
+
+    @Column(name = "user_id")
+    private Long userId;
 
     @Column(nullable = false)
     private LocalDateTime timeStart;

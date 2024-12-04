@@ -12,6 +12,7 @@ public class ReservationRequest {
     private String timeStart;
     private Integer numberOfPeople;
     private String customerName;
+    private String customerPhone;
 
     // Геттеры и сеттеры
 }

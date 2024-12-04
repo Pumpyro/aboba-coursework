@@ -22,8 +22,9 @@ public class ReservationController {
         String timeStart = reservationRequest.getTimeStart();
         Integer numberOfPeople = reservationRequest.getNumberOfPeople();
         String customerName = reservationRequest.getCustomerName();
+        String customerPhone = reservationRequest.getCustomerPhone();
         LocalDateTime parsedTimeStart = LocalDateTime.parse(timeStart); // Ожидается ISO-8601 формат (e.g., 2024-11-22T14:00)
-        Reservation reservation = reservationService.createReservation(tableId, customerName, numberOfPeople, parsedTimeStart);
+        Reservation reservation = reservationService.createReservation(tableId, customerName, numberOfPeople, parsedTimeStart, customerPhone);
         return ResponseEntity.ok(reservation);
     }
 }
