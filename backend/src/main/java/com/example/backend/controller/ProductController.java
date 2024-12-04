@@ -1,10 +1,6 @@
 package com.example.backend.controller;
 
-import java.io.IOException;
 import java.math.BigDecimal;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -66,7 +62,7 @@ public class ProductController {
             Product savedProduct = productService.saveProduct(newProduct);
 
             // Сохраняем изображение
-            String imagePath = saveProductImage(savedProduct.getId(), image);
+            String imagePath = productService.saveProductImage(savedProduct.getId(), image);
             savedProduct.setImageUrl(imagePath);
 
             // Обновляем продукт с сохраненным изображением
@@ -84,7 +80,7 @@ public class ProductController {
             productService.deleteProduct(id);
 
             // Удаляем изображение продукта
-            deleteProductImage(id);
+            productService.deleteProductImage(id);
 
             return ResponseEntity.ok("Продукт успешно удален");
         } catch (Exception e) {
@@ -93,39 +89,5 @@ public class ProductController {
     }
 
 
-    private String saveProductImage(Long productId, MultipartFile image) throws IOException {
-        // String imageFolderPath = "src/main/resources/public/images/";
-        String imageFolderPath = "uploads/images/";
-        String imageFileName = "product" + productId + ".jpg"; // Сохраняем как product{id}.jpg
-        Path imagePath = Paths.get(imageFolderPath, imageFileName);
 
-        // Создаем директорию, если она не существует
-        Files.createDirectories(imagePath.getParent());
-
-        // Сохраняем файл
-
-        byte[] imageBytes = image.getBytes();
-        System.out.println("Размер файла в байтах: " + imageBytes.length);
-        System.out.println("Сохраняем изображение в: " + imagePath.toAbsolutePath());
-        try {
-            Files.write(imagePath, image.getBytes());
-            System.out.println("Изображение сохранено успешно.");
-        } catch (IOException e) {
-            System.err.println("Ошибка при сохранении изображения: " + e.getMessage());
-            e.printStackTrace();
-        }
-        System.out.println("Попытка сохранения изображения");
-
-        // Возвращаем путь для сохранения в БД
-        return "/images/" + imageFileName;
-    }
-
-    private void deleteProductImage(Long productId) throws IOException {
-        String imageFolderPath = "src/main/resources/public/images/";
-        String imageFileName = "product" + productId + ".jpg";
-        Path imagePath = Paths.get(imageFolderPath, imageFileName);
-
-        // Удаляем файл, если он существует
-        Files.deleteIfExists(imagePath);
-    }
 }

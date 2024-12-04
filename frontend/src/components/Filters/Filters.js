@@ -33,7 +33,7 @@ function Filters({ onApplyFilters }) {
           </option>
         ))}
       </select>
-      <inputq
+      <input
         type="number"
         placeholder="Минимальная цена"
         value={minPrice}
