@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.web.config.EnableSpringDataWebSupport;
+import org.springframework.scheduling.annotation.EnableScheduling;
 // import org.springframework.security.authentication.AuthenticationManager;
 // import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 // import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -26,6 +27,7 @@ import com.example.backend.filter.JwtRequestFilter;
 // import com.example.backend.service.UserService;
 
 @Configuration
+@EnableScheduling
 @EnableWebSecurity
 @EnableSpringDataWebSupport(pageSerializationMode = EnableSpringDataWebSupport.PageSerializationMode.VIA_DTO)
 @EnableMethodSecurity(prePostEnabled = true)
@@ -45,7 +47,7 @@ public class SecurityConfig {
             .cors().configurationSource(corsConfigurationSource())
             .and()
             .authorizeRequests()
-            .requestMatchers("/api/auth/login", "/api/auth/register", "/api/auth/refresh", "/api/products", "/images/**", "/static/**", "/api/payments/process", "/api/products/**", "/api/account/change-password", "/api/reviews/**").permitAll()
+            .requestMatchers("/api/auth/login", "/api/auth/register", "/api/auth/refresh", "/api/products", "/images/**", "/static/**", "/api/payments/process", "/api/products/**", "/api/account/change-password", "/api/reviews/**", "/api/reservations/book").permitAll()
             // .requestMatchers("/api/protected").hasRole("ADMIN")
             .anyRequest().authenticated()
             .and()
