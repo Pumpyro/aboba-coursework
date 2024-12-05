@@ -66,6 +66,7 @@ public class PaymentService {
         Order order = new Order();
         order.setUser(user);
         order.setTotalPrice(orderAmount);
+        order.setDeliveryAddress(paymentRequest.getDeliveryAddress());
 
         // Сохранение продуктов в заказе
 

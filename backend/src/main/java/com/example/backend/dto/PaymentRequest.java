@@ -14,5 +14,6 @@ public class PaymentRequest {
     private String pinCode;
     private BigDecimal orderAmount;
     private Map<Long, Integer> products;
+    private String deliveryAddress;
 }
 

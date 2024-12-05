@@ -12,6 +12,8 @@ function PaymentModal({ isOpen, onClose }) {
   const { accessToken } = useAuth();
   const [accountNumber, setAccountNumber] = useState("");
   const [pinCode, setPinCode] = useState("");
+  const [deliveryAddress, setDeliveryAddress] = useState(null);
+  const [deliveryMethod, setDeliveryMethod] = useState("pickup");
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
 
@@ -31,11 +33,10 @@ function PaymentModal({ isOpen, onClose }) {
       pinCode,
       orderAmount: getTotalPrice(),
       products,
+      deliveryAddress,
     };
 
     try {
-        console.log(JSON.stringify(paymentRequest));
-        console.log(accessToken);
       const response = await fetch("http://localhost:8080/api/payments/process", {
         method: "POST",
         headers: { "Content-Type": "application/json", "Authorization": `Bearer ${accessToken}`},
@@ -84,6 +85,42 @@ function PaymentModal({ isOpen, onClose }) {
           autoComplete = "off"
         />
       </div>
+      <div className={styles.inputGroup}>
+        <label>Метод доставки</label>
+        <div className={styles.radioGroup}>
+          <label>
+            <input
+              type="radio"
+              name="deliveryMethod"
+              value="pickup"
+              checked={deliveryMethod === "pickup"}
+              onChange={() => setDeliveryMethod("pickup")}
+            />
+            Самовывоз
+          </label>
+          <label>
+            <input
+              type="radio"
+              name="deliveryMethod"
+              value="delivery"
+              checked={deliveryMethod === "delivery"}
+              onChange={() => setDeliveryMethod("delivery")}
+            />
+            Доставка
+          </label>
+        </div>
+      </div>
+      {deliveryMethod === "delivery" && (
+        <div className={styles.inputGroup}>
+          <label>Адрес доставки</label>
+          <input
+            type="text"
+            value={deliveryAddress || ""}
+            onChange={(e) => setDeliveryAddress(e.target.value)}
+            placeholder="Введите адрес"
+          />
+        </div>
+      )}
       <div className={styles.actions}>
         <button onClick={onClose} className={styles.closeButton}>
           Отмена

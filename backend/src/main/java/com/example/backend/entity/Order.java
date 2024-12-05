@@ -28,6 +28,10 @@ public class Order {
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<OrderProduct> products;
 
+    @Column(name = "delivery_address", nullable = true)
+    private String deliveryAddress;
+
+
     @Column(name = "created_at", updatable = false)
     private LocalDateTime createdAt;
 
