@@ -139,7 +139,7 @@ function ReservationModal({ isOpen, onClose }) {
               <option value="">Выберите столик</option>
               {availableTables.map((table) => (
                 <option key={table.id} value={table.id}>
-                  Столик {table.id}
+                  Столик {table.id} ({table.capacity} места)
                 </option>
               ))}
             </select>
