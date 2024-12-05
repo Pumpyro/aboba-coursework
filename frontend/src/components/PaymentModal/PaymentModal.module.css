@@ -1,0 +1,66 @@
+.modalOverlay {
+    background: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .modalContent {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 400px;
+    position: relative;
+  }
+  
+  .inputGroup {
+    margin-bottom: 15px;
+  }
+  
+  .inputGroup label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .inputGroup input {
+    width: 100%;
+    padding: 8px;
+  }
+  
+  .actions {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .closeButton,
+  .payButton {
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .closeButton {
+    background: red;
+    color: white;
+  }
+  
+  .payButton {
+    background: green;
+    color: white;
+  }
+
+  .payButton:disabled{
+    background: gray;
+    cursor: default;
+  }
+  
+  .message {
+    margin-top: 10px;
+    font-weight: bold;
+  }
+  

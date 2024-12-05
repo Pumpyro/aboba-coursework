@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
+import { jwtDecode } from "jwt-decode";
 
 const AuthContext = createContext();
 
@@ -14,6 +15,21 @@ export function AuthProvider({ children }) {
       setIsAuthenticated(true);
     }
   }, []);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (accessToken && isTokenExpired(accessToken)){
+        refreshAccessToken();
+      }
+    }, 5*60*1000);
+    return () => clearInterval(interval);
+  }, [accessToken]);
+
+  const isTokenExpired = (token) =>{
+    const decoded = jwtDecode(token);
+    const currentTime = Math.floor(Date.now() / 1000);
+    return decoded.exp < currentTime;
+  }
 
   const login = async (username, password) => {
     try {

@@ -68,6 +68,7 @@ public class PaymentService {
         order.setTotalPrice(orderAmount);
 
         // Сохранение продуктов в заказе
+
         Set<OrderProduct> orderProducts = paymentRequest.getProducts().entrySet().stream()
                 .map(entry -> {
                     OrderProduct orderProduct = new OrderProduct();

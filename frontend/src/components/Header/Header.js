@@ -17,6 +17,9 @@ function Header({ onLoginClick, onRegisterClick }) {
           <li className={styles.header__item}>
             <Link to="/menu">Меню</Link>
           </li>
+          <li className={styles.header__item}>
+            <Link to="/cart">Корзина</Link>
+          </li>
         </ul>
         <ul className={styles.right_list}>
           {!isAuthenticated ? (
