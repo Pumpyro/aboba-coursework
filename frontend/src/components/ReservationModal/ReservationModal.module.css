@@ -1,0 +1,81 @@
+.modalOverlay {
+    position: fixed; /* Фиксированное положение */
+    top: 0;
+    left: 0;
+    width: 100vw; /* Занять всю ширину экрана */
+    height: 100vh; /* Занять всю высоту экрана */
+    background-color: rgba(0, 0, 0, 0.5); /* Темный фон */
+    display: flex;
+    justify-content: center; /* Горизонтальное центрирование */
+    align-items: center; /* Вертикальное центрирование */
+    z-index: 1000; /* Высокий индекс для отображения поверх остальных элементов */
+  }
+  
+  .modalContent {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 400px;
+    width: 100%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Тень */
+    z-index: 1001; /* Убедиться, что окно выше overlay */
+  }
+  
+  
+  .inputGroup {
+    margin-bottom: 15px;
+  }
+  
+  .inputGroup label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  .inputGroup input {
+    width: 100%;
+    padding: 6px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .actions {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .closeButton {
+    background-color: #ccc;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .reserveButton {
+    background-color: #4caf50;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  .reserveButton:disabled {
+    background-color: gray;
+    cursor: default;
+  }
+  
+  .message {
+    margin-top: 10px;
+    color: green;
+    font-weight: bold;
+  }
+
+  .error {
+    color: red;
+    font-size: 0.9rem;
+    margin-top: 5px;
+  }
+  
+  

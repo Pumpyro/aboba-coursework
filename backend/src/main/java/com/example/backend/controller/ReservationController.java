@@ -27,4 +27,10 @@ public class ReservationController {
         Reservation reservation = reservationService.createReservation(tableId, customerName, numberOfPeople, parsedTimeStart, customerPhone);
         return ResponseEntity.ok(reservation);
     }
+
+
+    @ExceptionHandler(IllegalStateException.class)
+    public ResponseEntity<String> handleIllegalStateException(IllegalStateException e) {
+        return ResponseEntity.badRequest().body(e.getMessage()); // Возвращаем 400 и текст ошибки
+    }
 }

@@ -12,7 +12,6 @@ export const CartProvider = ({ children }) => {
 
 
   useEffect(() => {
-    console.log("Сохраняем корзину в localStorage:", cart);
     localStorage.setItem("cart", JSON.stringify(cart));
   }, [cart]);
 

@@ -4,8 +4,6 @@ import { useCart } from "../../contexts/CartContext";
 import { useAuth } from "../../contexts/AuthContext";
 import styles from "./PaymentModal.module.css";
 
-// Устанавливаем элемент приложения для управления aria-hidden
-Modal.setAppElement("#root");
 
 function PaymentModal({ isOpen, onClose }) {
   const { cart, clearCart, getTotalPrice } = useCart();
@@ -88,7 +86,7 @@ function PaymentModal({ isOpen, onClose }) {
       <div className={styles.inputGroup}>
         <label>Метод доставки</label>
         <div className={styles.radioGroup}>
-          <label>
+          <label className={styles.method}>
             <input
               type="radio"
               name="deliveryMethod"
@@ -98,7 +96,7 @@ function PaymentModal({ isOpen, onClose }) {
             />
             Самовывоз
           </label>
-          <label>
+          <label className={styles.method}>
             <input
               type="radio"
               name="deliveryMethod"

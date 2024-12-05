@@ -4,7 +4,7 @@ import styles from "./Header.module.css";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
 
-function Header({ onLoginClick, onRegisterClick }) {
+function Header({ onLoginClick, onRegisterClick, onReservationClick}) {
   const { isAuthenticated, logout } = useAuth();
   const navigate = useNavigate();
 
@@ -28,6 +28,11 @@ function Header({ onLoginClick, onRegisterClick }) {
           </li>
         </ul>
         <ul className={styles.right_list}>
+          <li className={styles.header__item}>
+            <button onClick={onReservationClick} className={styles.reservationButton}>
+              Забронировать
+            </button>
+          </li>
           {!isAuthenticated ? (
             <>
               <li className={styles.header__item}>
