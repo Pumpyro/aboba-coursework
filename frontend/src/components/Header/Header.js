@@ -1,11 +1,17 @@
 import React from "react";
 
 import styles from "./Header.module.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
 
 function Header({ onLoginClick, onRegisterClick }) {
   const { isAuthenticated, logout } = useAuth();
+  const navigate = useNavigate();
+
+  function handleLogout(){
+    logout();
+    navigate("/");
+  }
 
   return (
     <div className={styles.header}>
@@ -36,11 +42,16 @@ function Header({ onLoginClick, onRegisterClick }) {
               </li>
             </>
           ) : (
-            <li className={styles.header__item}>
-              <button onClick={logout} className={styles.button}>
-                Выйти
-              </button>
-            </li>
+            <div className={styles.right_list}>
+              <li className={styles.header__item}>
+                <Link to="/profile">Профиль</Link>
+              </li>
+              <li className={styles.header__item}>
+                <button onClick={handleLogout} className={styles.button}>
+                  Выйти
+                </button>
+              </li>
+            </div>
           )}
         </ul>
       </nav>

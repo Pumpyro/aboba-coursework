@@ -9,6 +9,7 @@ import { AuthProvider } from "./contexts/AuthContext";
 import Footer from "./components/Footer/Footer";
 import { CartProvider } from "./contexts/CartContext";
 import CartPage from "./pages/CartPage";
+import ProfilePage from "./pages/ProfilePage";
 
 function App() {
   const [isLoginOpen, setLoginOpen] = React.useState(false);
@@ -26,6 +27,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/menu" element={<Menu />} />
             <Route path="/cart" element={<CartPage />} />
+            <Route path="/profile" element={<ProfilePage />} />
           </Routes>
           {isLoginOpen && <LoginModal onClose={() => setLoginOpen(false)} />}
           {isRegisterOpen && (

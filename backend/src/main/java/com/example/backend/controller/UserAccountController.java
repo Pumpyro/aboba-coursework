@@ -3,6 +3,7 @@ package com.example.backend.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.backend.dto.PasswordChangeRequest;
 import com.example.backend.dto.UpdateUserRequest;
+import com.example.backend.dto.UserDataResponse;
 import com.example.backend.service.UserService;
 
 import java.security.Principal;
@@ -52,4 +54,21 @@ public class UserAccountController {
             return ResponseEntity.status(500).body("Ошибка сервера: " + e.getMessage());
         }
     }
+
+
+    @GetMapping("/me")
+public ResponseEntity<?> getUserData(Principal principal) {
+    try {
+        // Получение текущего пользователя по имени из Principal
+        String username = principal.getName();
+        UserDataResponse userData = userService.getUserData(username);
+
+        return ResponseEntity.ok(userData);
+    } catch (IllegalArgumentException e) {
+        return ResponseEntity.badRequest().body("Ошибка: " + e.getMessage());
+    } catch (Exception e) {
+        return ResponseEntity.status(500).body("Ошибка сервера: " + e.getMessage());
+    }
+}
+
 }

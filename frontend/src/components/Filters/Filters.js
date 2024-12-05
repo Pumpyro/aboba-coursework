@@ -5,6 +5,7 @@ function Filters({ onApplyFilters }) {
   const [category, setCategory] = useState("");
   const [minPrice, setMinPrice] = useState("");
   const [maxPrice, setMaxPrice] = useState("");
+  const [name, setName] = useState("");
 
   const categories = {
     electronics: "Электроника",
@@ -16,11 +17,19 @@ function Filters({ onApplyFilters }) {
     if (category) filters.category = category;
     if (minPrice) filters.minPrice = minPrice;
     if (maxPrice) filters.maxPrice = maxPrice;
+    if (name) filters.name = name;
     onApplyFilters(filters);
   };
 
   return (
     <div className={styles.filtersContainer}>
+      <input
+        type="text"
+        placeholder="Название продукта"
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+        className={styles.filterInput}
+      />
       <select
         value={category}
         onChange={(e) => setCategory(e.target.value)}

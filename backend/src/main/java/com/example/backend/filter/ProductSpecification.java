@@ -23,4 +23,14 @@ public class ProductSpecification {
             }
         };
     }
+
+    public static Specification<Product> hasNameLike(String name) {
+        return (root, query, criteriaBuilder) -> {
+            if (name == null || name.trim().isEmpty()) {
+                return null; // Если имя не передано, условие не добавляется
+            }
+            return criteriaBuilder.like(criteriaBuilder.lower(root.get("name")), "%" + name.toLowerCase() + "%");
+        };
+    }
+    
 }

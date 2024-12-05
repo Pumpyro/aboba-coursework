@@ -12,6 +12,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.example.backend.dto.PasswordChangeRequest;
+import com.example.backend.dto.UpdateUserRequest;
+import com.example.backend.dto.UserDataResponse;
 import com.example.backend.entity.Role;
 import com.example.backend.entity.User;
 import com.example.backend.repository.RoleRepository;
@@ -107,5 +109,21 @@ public class UserService implements UserDetailsService {
 
         return userRepository.save(user);
     }
+
+    public UserDataResponse getUserData(String username) {
+    User user = userRepository.findByUsername(username);
+    if (user == null) {
+        throw new IllegalArgumentException("User not found");
+    }
+    // Создаем DTO для передачи данных пользователя
+    UserDataResponse userData = new UserDataResponse();
+    userData.setUsername(user.getUsername());
+    userData.setEmail(user.getEmail());
+    userData.setFirstName(user.getFirstName());
+    userData.setLastName(user.getLastName());
+    userData.setPhoneNumber(user.getPhoneNumber());
+
+    return userData;
+}
 
 }

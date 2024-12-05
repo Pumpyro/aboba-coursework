@@ -32,12 +32,14 @@ public class ProductController {
             @RequestParam(required = false) String category,
             @RequestParam(required = false) Double minPrice,
             @RequestParam(required = false) Double maxPrice,
+            @RequestParam(required = false) String name,
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size
     ) {
         Specification<Product> spec = Specification
                 .where(ProductSpecification.hasCategory(category))
-                .and(ProductSpecification.hasPriceBetween(minPrice, maxPrice));
+                .and(ProductSpecification.hasPriceBetween(minPrice, maxPrice))
+                .and(ProductSpecification.hasNameLike(name));
 
         PageRequest pageable = PageRequest.of(page, size);
         return productService.getProducts(pageable, spec);
