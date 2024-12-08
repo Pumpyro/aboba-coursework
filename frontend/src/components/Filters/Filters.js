@@ -1,16 +1,36 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./Filters.module.css";
 
 function Filters({ onApplyFilters }) {
   const [category, setCategory] = useState("");
+  const [categories, setCategories] = useState([]);
   const [minPrice, setMinPrice] = useState("");
   const [maxPrice, setMaxPrice] = useState("");
   const [name, setName] = useState("");
 
-  const categories = {
-    electronics: "Электроника",
-    cloth: "Одежда",
-  };
+//   categories = {
+//     electronics: "Электроника",
+//     cloth: "Одежда",
+// };
+
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const response = await fetch("http://localhost:8080/api/products/categories");
+        if (response.ok) {
+          const data = await response.json();
+          setCategories(data);
+        } else {
+          console.error("Ошибка при получении категорий");
+        }
+      } catch (error) {
+        console.error("Ошибка сети:", error);
+      }
+    };
+
+    fetchCategories();
+  }, []);
 
   const handleApplyFilters = () => {
     const filters = {};
@@ -36,9 +56,14 @@ function Filters({ onApplyFilters }) {
         className={styles.filterSelect}
       >
         <option value="">Все категории</option>
-        {Object.entries(categories).map(([key, value]) => (
+        {/* {Object.entries(categories).map(([key, value]) => (
           <option key={key} value={key}>
             {value}
+          </option>
+        ))} */}
+        {categories.map((category) => (
+          <option key={category} value={category}>
+            {category}
           </option>
         ))}
       </select>

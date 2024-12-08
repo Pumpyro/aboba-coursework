@@ -3,9 +3,10 @@ import React from "react";
 import styles from "./Header.module.css";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
+import { hasRole } from "../../utils/roleCheck";
 
 function Header({ onLoginClick, onRegisterClick, onReservationClick}) {
-  const { isAuthenticated, logout } = useAuth();
+  const { isAuthenticated, logout, accessToken } = useAuth();
   const navigate = useNavigate();
 
   function handleLogout(){
@@ -23,6 +24,10 @@ function Header({ onLoginClick, onRegisterClick, onReservationClick}) {
           <li className={styles.header__item}>
             <Link to="/menu">Меню</Link>
           </li>
+          {hasRole(accessToken, "MODERATOR") && 
+          <li className={styles.header__item}>
+            <Link to="/moderator">Модераторская панель</Link>
+          </li>}
           {isAuthenticated && <li className={styles.header__item}>
             <Link to="/cart">Корзина</Link>
           </li>}

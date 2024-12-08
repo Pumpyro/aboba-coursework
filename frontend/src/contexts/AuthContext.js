@@ -23,20 +23,19 @@ export function AuthProvider({ children }) {
   useEffect(() => {
     const interval = setInterval(() => {
       if (accessToken && isTokenExpired(accessToken)){
-        console.log('im here?');
         refreshAccessToken();
       }
-      console.log('hi');
-    }, 5*60*100);
+    }, 5*60*1000);
     return () => clearInterval(interval);
   }, [accessToken]);
+
 
   const isTokenExpired = (token) =>{
     const decoded = jwtDecode(token);
     const currentTime = Math.floor(Date.now() / 1000);
-    console.log(decoded.exp, currentTime);
     return decoded.exp < currentTime;
   }
+
 
   const login = async (username, password) => {
     try {
@@ -84,7 +83,6 @@ export function AuthProvider({ children }) {
         const newToken = data.accessToken;
         setAccessToken(newToken);
         localStorage.setItem("accessToken", newToken);
-        console.log(newToken);
         return newToken;
       } else {
         logout();
@@ -105,7 +103,7 @@ export function AuthProvider({ children }) {
         login,
         logout,
         accessToken,
-        refreshAccessToken,
+        refreshAccessToken
       }}
     >
       {children}

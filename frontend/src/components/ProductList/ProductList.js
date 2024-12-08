@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Card from "../Card/Card";
 import styles from "./ProductList.module.css";
 
-function ProductList({ filters }) {
+function ProductList({ filters, isModerator = false }) {
   const [products, setProducts] = useState([]);
   const [page, setPage] = useState(0);
   const [totalPages, setTotalPages] = useState(1);
@@ -30,11 +30,44 @@ function ProductList({ filters }) {
     fetchProducts();
   }, [page, filters]);
 
+
+  const handleDelete = async (productId) => {
+    if (window.confirm("Вы уверены, что хотите удалить этот продукт?")) {
+      try {
+        const response = await fetch(
+          `http://localhost:8080/api/products/delete/${productId}`,
+          {
+            method: "DELETE",
+          }
+        );
+
+        if (response.ok) {
+          setProducts((prevProducts) =>
+            prevProducts.filter((product) => product.id !== productId)
+          );
+          alert("Продукт успешно удален.");
+        } else {
+          const error = await response.text();
+          console.error("Ошибка при удалении продукта:", error);
+          alert("Не удалось удалить продукт. Попробуйте снова.");
+        }
+      } catch (error) {
+        console.error("Ошибка при удалении продукта:", error);
+        alert("Ошибка сервера. Попробуйте снова.");
+      }
+    }
+  };
+
   return (
     <div>
       <div className={styles.productList}>
         {products.map((product) => (
-          <Card key={product.id} product={product} />
+          <div key={product.id} className = {styles.productCard}>
+            <Card key={product.id} product={product} />
+            {isModerator && (
+              <button onClick={() => handleDelete(product.id)} className ={styles.deleteButton}>Удалить</button>
+            )}
+          </div>
         ))}
       </div>
       {!(products.length===0) ?

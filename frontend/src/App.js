@@ -13,6 +13,7 @@ import ReservationModal from "./components/ReservationModal/ReservationModal";
 import { AuthProvider } from "./contexts/AuthContext";
 import Footer from "./components/Footer/Footer";
 import { CartProvider } from "./contexts/CartContext";
+import ModeratorPage from "./pages/ModeratorPage";
 
 function App() {
   const [isLoginOpen, setLoginOpen] = React.useState(false);
@@ -35,6 +36,7 @@ function App() {
             <Route path="/profile" element={<ProfilePage />} />
             <Route path="/feedback" element={<FeedbackPage />} />
             <Route path="/partnership" element={<PartnershipPage />} />
+            <Route path="/moderator" element={<ModeratorPage /> } />
           </Routes>
           {isLoginOpen && <LoginModal onClose={() => setLoginOpen(false)} />}
           {isRegisterOpen && (

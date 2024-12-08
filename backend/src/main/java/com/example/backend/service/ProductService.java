@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -45,17 +47,13 @@ public class ProductService {
 
         // Сохраняем файл
 
-        byte[] imageBytes = image.getBytes();
-        System.out.println("Размер файла в байтах: " + imageBytes.length);
-        System.out.println("Сохраняем изображение в: " + imagePath.toAbsolutePath());
         try {
             Files.write(imagePath, image.getBytes());
-            System.out.println("Изображение сохранено успешно.");
+
         } catch (IOException e) {
-            System.err.println("Ошибка при сохранении изображения: " + e.getMessage());
+    
             e.printStackTrace();
         }
-        System.out.println("Попытка сохранения изображения");
 
         // Возвращаем путь для сохранения в БД
         return "/images/" + imageFileName;
@@ -69,5 +67,10 @@ public class ProductService {
         // Удаляем файл, если он существует
         Files.deleteIfExists(imagePath);
     }
+
+    public Set<String> getAllCategories() {
+    return new HashSet<>(productRepository.findDistinctCategories());
+    }
+
     
 }

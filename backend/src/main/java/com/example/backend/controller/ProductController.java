@@ -1,6 +1,7 @@
 package com.example.backend.controller;
 
 import java.math.BigDecimal;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -89,6 +90,17 @@ public class ProductController {
             return ResponseEntity.status(500).body("Ошибка при удалении продукта: " + e.getMessage());
         }
     }
+
+    @GetMapping("/categories")
+    public ResponseEntity<?> getCategories() {
+    try {
+        // Получаем список уникальных категорий из базы данных
+        Set<String> categories = productService.getAllCategories();
+        return ResponseEntity.ok(categories);
+    } catch (Exception e) {
+        return ResponseEntity.status(500).body("Ошибка при получении категорий: " + e.getMessage());
+    }
+}
 
 
 
