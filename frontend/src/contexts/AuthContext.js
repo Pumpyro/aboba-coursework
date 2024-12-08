@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { jwtDecode } from "jwt-decode";
+import { useCart } from "./CartContext";
 
 const AuthContext = createContext();
 
@@ -7,6 +8,8 @@ export function AuthProvider({ children }) {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [user, setUser] = useState(null);
   const [accessToken, setAccessToken] = useState(null);
+  const {clearCart} = useCart();
+
 
 
   useEffect(() => {
@@ -20,15 +23,18 @@ export function AuthProvider({ children }) {
   useEffect(() => {
     const interval = setInterval(() => {
       if (accessToken && isTokenExpired(accessToken)){
+        console.log('im here?');
         refreshAccessToken();
       }
-    }, 5*60*1000);
+      console.log('hi');
+    }, 5*60*100);
     return () => clearInterval(interval);
   }, [accessToken]);
 
   const isTokenExpired = (token) =>{
     const decoded = jwtDecode(token);
     const currentTime = Math.floor(Date.now() / 1000);
+    console.log(decoded.exp, currentTime);
     return decoded.exp < currentTime;
   }
 
@@ -62,6 +68,7 @@ export function AuthProvider({ children }) {
     setIsAuthenticated(false);
     setUser(null);
     setAccessToken(null);
+    clearCart();
     localStorage.removeItem("accessToken");
   };
 
@@ -77,6 +84,7 @@ export function AuthProvider({ children }) {
         const newToken = data.accessToken;
         setAccessToken(newToken);
         localStorage.setItem("accessToken", newToken);
+        console.log(newToken);
         return newToken;
       } else {
         logout();

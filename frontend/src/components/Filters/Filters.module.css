@@ -39,9 +39,9 @@
 
 .filterSelect {
   width: 100%;
+  max-width: 200px;
   padding: 8px;
-  margin-bottom: 10px;
-  font-size: 16px;
+  font-size: 0.9rem;
   border: 1px solid #ccc;
   border-radius: 4px;
 }

@@ -11,7 +11,7 @@ function ProductList({ filters }) {
     const fetchProducts = async () => {
       const queryParams = new URLSearchParams({
         page,
-        size: 10, // Количество продуктов на странице
+        size: 8, // Количество продуктов на странице
         ...filters, // Фильтры, переданные как пропсы
       });
 
@@ -37,25 +37,26 @@ function ProductList({ filters }) {
           <Card key={product.id} product={product} />
         ))}
       </div>
+      {!(products.length===0) ?
       <div className={styles.pagination}>
-        <button
-          onClick={() => setPage((prev) => Math.max(prev - 1, 0))}
-          disabled={page === 0}
-          className={styles.paginationButton}
-        >
-          Назад
-        </button>
-        <span>
-          Страница {page + 1} из {totalPages}
-        </span>
-        <button
-          onClick={() => setPage((prev) => Math.min(prev + 1, totalPages - 1))}
-          disabled={page === totalPages - 1}
-          className={styles.paginationButton}
-        >
-          Вперед
-        </button>
-      </div>
+      <button
+        onClick={() => setPage((prev) => Math.max(prev - 1, 0))}
+        disabled={page === 0}
+        className={styles.paginationButton}
+      >
+        Назад
+      </button>
+      <span>
+        Страница {page + 1} из {totalPages}
+      </span>
+      <button
+        onClick={() => setPage((prev) => Math.min(prev + 1, totalPages - 1))}
+        disabled={page === totalPages - 1}
+        className={styles.paginationButton}
+      >
+        Вперед
+      </button>
+    </div> : <p className={styles.paragraph}>Ничего не найдено!</p>}
     </div>
   );
 }

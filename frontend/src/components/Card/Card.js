@@ -17,14 +17,14 @@ const Card = ({ product }) => {
         <h3 className={styles.name}>{product.name}</h3>
         <p className={styles.description}>{product.description}</p>
         <p className={styles.price}>Цена: {product.price} руб.</p>
-        <button
+      </div>
+      <button
           onClick={() => addToCart(product)}
           className={styles.btn}
           disabled={!isAuthenticated}
         >
           Добавить в корзину
         </button>
-      </div>
     </div>
   );
 };

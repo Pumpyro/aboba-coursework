@@ -51,10 +51,11 @@ function RegisterModal({ onClose }) {
       <button onClick={closeModal} className={styles.closeButton}>
         &times;
       </button>
-      <h2>Регистрация</h2>
+      <h2 className={styles.heading2}>Регистрация</h2>
       {errorMessage && <p className={styles.error}>{errorMessage}</p>}
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className={styles.form}>
         <input
+          className={styles.input}
           type="text"
           placeholder="Username"
           value={username}
@@ -62,6 +63,7 @@ function RegisterModal({ onClose }) {
           required
         />
         <input
+          className={styles.input}
           type="email"
           placeholder="Email"
           value={email}
@@ -69,13 +71,14 @@ function RegisterModal({ onClose }) {
           required
         />
         <input
+          className={styles.input}
           type="password"
           placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
         />
-        <button type="submit">Регистрация</button>
+        <button type="submit" className={styles.btn}>Регистрация</button>
       </form>
     </Modal>
   );

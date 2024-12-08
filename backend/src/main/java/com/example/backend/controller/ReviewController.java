@@ -1,7 +1,6 @@
 package com.example.backend.controller;
 
 import com.example.backend.dto.ReviewRequest;
-import com.example.backend.entity.Review;
 import com.example.backend.service.ReviewService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

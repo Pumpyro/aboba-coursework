@@ -3,14 +3,16 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Menu from "./pages/Menu";
+import CartPage from "./pages/CartPage";
+import ProfilePage from "./pages/ProfilePage";
+import FeedbackPage from "./pages/FeedbackPage/FeedbackPage";
+import PartnershipPage from "./pages/PartnershipPage/PartnershipPage";
 import LoginModal from "./components/LoginModal/LoginModal";
 import RegisterModal from "./components/RegisterModal/RegisterModal";
 import ReservationModal from "./components/ReservationModal/ReservationModal";
 import { AuthProvider } from "./contexts/AuthContext";
 import Footer from "./components/Footer/Footer";
 import { CartProvider } from "./contexts/CartContext";
-import CartPage from "./pages/CartPage";
-import ProfilePage from "./pages/ProfilePage";
 
 function App() {
   const [isLoginOpen, setLoginOpen] = React.useState(false);
@@ -18,8 +20,8 @@ function App() {
   const [isReservationOpen, setReservationOpen] = React.useState(false);
 
   return (
-    <AuthProvider>
-      <CartProvider>
+    <CartProvider>
+      <AuthProvider>
         <Router>
           <Header
             onReservationClick={() => setReservationOpen(true)}
@@ -31,6 +33,8 @@ function App() {
             <Route path="/menu" element={<Menu />} />
             <Route path="/cart" element={<CartPage />} />
             <Route path="/profile" element={<ProfilePage />} />
+            <Route path="/feedback" element={<FeedbackPage />} />
+            <Route path="/partnership" element={<PartnershipPage />} />
           </Routes>
           {isLoginOpen && <LoginModal onClose={() => setLoginOpen(false)} />}
           {isRegisterOpen && (
@@ -42,8 +46,8 @@ function App() {
           />
           <Footer />
         </Router>
-      </CartProvider>
-    </AuthProvider>
+      </AuthProvider>
+    </CartProvider>
   );
 }
 

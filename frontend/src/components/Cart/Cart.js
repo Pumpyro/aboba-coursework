@@ -25,9 +25,9 @@ function Cart() {
 
   return (
     <div className={styles.cartContainer}>
-      <h1>Корзина</h1>
+      <h1 className={styles.heading}>Корзина</h1>
       {cart.length === 0 ? (
-        <p>Корзина пуста :c</p>
+        <p className={styles.paragraph}>Корзина пуста :c</p>
       ) : (
         <>
           <ul className={styles.cartItems}>

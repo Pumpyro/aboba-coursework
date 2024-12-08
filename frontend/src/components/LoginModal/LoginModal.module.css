@@ -24,26 +24,26 @@
   z-index: 999;
 }
 
-h2 {
+.heading2 {
   margin-top: 0;
   margin-bottom: 20px;
   color: #333;
 }
 
-form {
+.form {
   display: flex;
   flex-direction: column;
   width: 100%;
 }
 
-input {
+.input {
   margin-bottom: 15px;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 4px;
 }
 
-button[type="submit"] {
+.btn{
   padding: 10px;
   background-color: #4caf50;
   color: white;
@@ -53,9 +53,10 @@ button[type="submit"] {
   margin-top: 30px;
 }
 
-button[type="submit"]:hover {
+.btn:hover{
   background-color: #45a049;
 }
+
 
 .closeButton {
   position: absolute;

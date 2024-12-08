@@ -23,9 +23,9 @@ function Header({ onLoginClick, onRegisterClick, onReservationClick}) {
           <li className={styles.header__item}>
             <Link to="/menu">Меню</Link>
           </li>
-          <li className={styles.header__item}>
+          {isAuthenticated && <li className={styles.header__item}>
             <Link to="/cart">Корзина</Link>
-          </li>
+          </li>}
         </ul>
         <ul className={styles.right_list}>
           <li className={styles.header__item}>

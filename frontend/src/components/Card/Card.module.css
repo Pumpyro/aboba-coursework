@@ -1,31 +1,37 @@
 .card {
-  border: 1px solid #e0e0e0; /* Тонкая рамка */
-  border-radius: 8px; /* Скругленные углы */
-  padding: 16px; /* Внутренний отступ */
-  background-color: #ffffff; /* Белый фон */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Легкая тень */
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 16px; 
+  background-color: #ffffff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
   align-items: center;
   transition: transform 0.2s, box-shadow 0.2s;
   cursor: pointer;
+  min-height: 350px;
 }
 
 .card:hover {
-  transform: translateY(-5px); /* Легкое поднятие при наведении */
-  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15); /* Более сильная тень */
+  transform: translateY(-5px); 
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
 }
 
 .image {
   width: 100%;
   max-width: 200px; /* Максимальная ширина изображения */
+  max-height: 200px;
+  min-height: 150px;
   height: auto;
   border-radius: 4px; /* Немного скругленные углы */
   margin-bottom: 12px;
 }
 
 .details {
+  display: flex;
+  flex-direction: column;
   text-align: center;
+  margin: 0;
 }
 
 .name {
@@ -38,21 +44,21 @@
 .price {
   font-size: 1rem;
   color: #555;
-  margin: 8px 0;
+  margin: 0;
 }
 
 .description {
   font-size: 0.9rem;
   color: #777;
-  margin: 8px 0;
-  height: 50px; /* Ограничение высоты */
+  margin: 0;
+  height: 40px; /* Ограничение высоты */
   overflow: hidden; /* Скрыть лишний текст */
   text-overflow: ellipsis; /* Добавить многоточие */
   white-space: nowrap; /* Обрезка текста в одну строку */
 }
 
 .btn {
-  margin-top: 12px;
+  margin-top: auto;
   padding: 10px 16px;
   background-color: #4caf50; /* Зеленый фон */
   color: white;

@@ -1,4 +1,4 @@
-p{
+.paragraph{
     text-align: center;
 }
 
@@ -6,7 +6,7 @@ p{
     padding: 20px;
   }
   
-  h1 {
+  .heading {
     margin-bottom: 20px;
     text-align: center;
   }
@@ -21,7 +21,6 @@ p{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 0;
     border-bottom: 1px solid #ccc;
   }
   

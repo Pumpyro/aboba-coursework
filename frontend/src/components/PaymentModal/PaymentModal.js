@@ -65,7 +65,7 @@ function PaymentModal({ isOpen, onClose }) {
       className={styles.modalContent}
       overlayClassName={styles.modalOverlay}
     >
-      <h2>Оплата</h2>
+      <h2 className={styles.heading2}>Оплата</h2>
       <div className={styles.inputGroup}>
         <label>Номер счета</label>
         <input
