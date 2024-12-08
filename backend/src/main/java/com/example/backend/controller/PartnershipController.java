@@ -1,8 +1,11 @@
 package com.example.backend.controller;
 
 import com.example.backend.dto.PartnershipRequest;
+import com.example.backend.entity.Partnership;
+import com.example.backend.entity.Review;
 import com.example.backend.service.PartnershipService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -28,6 +31,12 @@ public class PartnershipController {
     public ResponseEntity<?> deletePartnership(@PathVariable Long id) {
         partnershipService.deletePartnership(id);
         return ResponseEntity.ok("Заявка о сотрудничестве удалена");
+    }
+
+    @GetMapping
+    public Page<Partnership> getAllPartnerships(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "10") int size) {
+        Page<Partnership> partnerships = partnershipService.getAllPartnerships(page, size);
+        return partnerships;
     }
     
 }

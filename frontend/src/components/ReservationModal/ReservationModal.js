@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 import Modal from "react-modal";
 import styles from "./ReservationModal.module.css";
+import { useAuth } from "../../contexts/AuthContext";
 
 
 function ReservationModal({ isOpen, onClose }) {
+  const { accessToken } = useAuth();
   const [formData, setFormData] = useState({
     tableId: "",
     customerName: "",
@@ -91,9 +93,15 @@ function ReservationModal({ isOpen, onClose }) {
         return;
     }
     try {
+      const headers = {
+        "Content-Type": "application/json",
+      };
+      if (accessToken){
+        headers["Authorization"] = `Bearer ${accessToken}`;
+      }
       const response = await fetch("http://localhost:8080/api/reservations/book", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: headers,
         body: JSON.stringify(formData),
       });
 

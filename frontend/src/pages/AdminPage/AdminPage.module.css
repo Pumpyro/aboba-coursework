@@ -1,0 +1,99 @@
+.adminPage {
+    padding: 20px;
+  }
+  
+  .tabs {
+    display: flex;
+    justify-content: center;
+  }
+
+  .headings {
+    text-align: center;
+  }
+  
+  .tabButton {
+    padding: 10px 20px;
+    margin-right: 10px;
+    border: none;
+    border-radius: 4px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .tabButton.active {
+    background-color: #0056b3;
+  }
+  
+  .tabButton:hover {
+    background-color: #0056b3;
+  }
+  
+  .content {
+    margin-top: 20px;
+  }
+  
+  .item {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 10px 0;
+    border-bottom: 1px solid #ddd;
+    max-height: 100px;
+    overflow-y: auto;
+    gap: 20px;
+    box-sizing: border-box;
+    width: 100%;
+  }
+  
+  .item p{
+    margin: 0;
+    word-break: break-word;
+  }
+
+  .item strong{
+    font-weight: bold;
+  }
+  
+  .deleteButton {
+    padding: 5px 10px;
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .deleteButton:hover {
+    background-color: darkred;
+  }
+  
+  .pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    gap: 10px;
+  }
+  
+  .paginationButton {
+    padding: 8px 16px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .paginationButton:hover {
+    background-color: #0056b3;
+  }
+  
+  .paginationButton:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+  }
+  

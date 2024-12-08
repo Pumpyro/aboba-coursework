@@ -42,14 +42,13 @@ public class ReservationService {
         reservation.setCustomerName(customerName);
         reservation.setNumberOfPeople(numberOfPeople);
         reservation.setTimeStart(timeStart);
-        reservation.setTimeEnd(timeStart.plusMinutes(90)); // Бронирование на 1,5 часа
+        reservation.setTimeEnd(timeStart.plusMinutes(1)); // Бронирование на 1,5 часа
         reservation.setTable(table);
         reservation.setCustomerPhone(customerPhone);
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = authentication.getName();
         
         User user = userRepository.findByUsername(username);
-        System.out.println(1);
         if (user == null) {
             reservation.setUserId(null);
         }else{

@@ -28,6 +28,10 @@ function Header({ onLoginClick, onRegisterClick, onReservationClick}) {
           <li className={styles.header__item}>
             <Link to="/moderator">Модераторская панель</Link>
           </li>}
+          {hasRole(accessToken, "ADMIN") && 
+          <li className={styles.header__item}>
+            <Link to="/admin">Админ панель</Link>
+          </li>}
           {isAuthenticated && <li className={styles.header__item}>
             <Link to="/cart">Корзина</Link>
           </li>}

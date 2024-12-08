@@ -4,6 +4,9 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -14,6 +17,7 @@ import org.springframework.stereotype.Service;
 import com.example.backend.dto.PasswordChangeRequest;
 import com.example.backend.dto.UpdateUserRequest;
 import com.example.backend.dto.UserDataResponse;
+import com.example.backend.entity.Review;
 import com.example.backend.entity.Role;
 import com.example.backend.entity.User;
 import com.example.backend.repository.RoleRepository;
@@ -125,5 +129,21 @@ public class UserService implements UserDetailsService {
 
     return userData;
 }
+
+    public Page<User> getAllUsers(int page, int size){
+        return userRepository.findAll(PageRequest.of(page, size));
+    }
+
+    public void deleteUser(Long id, String currentUsername){
+        User userToDelete = userRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Пользователь с ID " + id + " не найден."));
+
+        if (userToDelete.getUsername().equals(currentUsername)){
+            throw new IllegalArgumentException("Нельзя удалить самого себя.");
+        }
+
+        userRepository.delete(userToDelete);
+
+        
+    }
 
 }

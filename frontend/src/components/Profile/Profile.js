@@ -20,8 +20,9 @@ function Profile() {
   const [error, setError] = useState(null);
   const [successMessage, setSuccessMessage] = useState(null);
 
-  // Fetch user data on component mount
   useEffect(() => {
+    if (!accessToken) return;
+
     const fetchUserData = async () => {
       try {
         const response = await fetch("http://localhost:8080/api/account/me", {

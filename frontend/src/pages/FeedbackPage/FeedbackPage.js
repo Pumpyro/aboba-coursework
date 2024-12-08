@@ -24,7 +24,7 @@ function FeedbackPage() {
       });
       if (response.ok) {
         setMessage("Спасибо за ваш отзыв!");
-        setFormData({ firstName: "", lastName: "", feedback: "" });
+        setFormData({ firstName: "", lastName: "", content: "" });
       } else {
         const errorText = await response.text();
         setMessage(`Ошибка: ${errorText}`);

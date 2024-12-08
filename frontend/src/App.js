@@ -14,6 +14,7 @@ import { AuthProvider } from "./contexts/AuthContext";
 import Footer from "./components/Footer/Footer";
 import { CartProvider } from "./contexts/CartContext";
 import ModeratorPage from "./pages/ModeratorPage";
+import AdminPage from "./pages/AdminPage/AdminPage";
 
 function App() {
   const [isLoginOpen, setLoginOpen] = React.useState(false);
@@ -37,6 +38,7 @@ function App() {
             <Route path="/feedback" element={<FeedbackPage />} />
             <Route path="/partnership" element={<PartnershipPage />} />
             <Route path="/moderator" element={<ModeratorPage /> } />
+            <Route path="/admin" element={<AdminPage /> } />
           </Routes>
           {isLoginOpen && <LoginModal onClose={() => setLoginOpen(false)} />}
           {isRegisterOpen && (

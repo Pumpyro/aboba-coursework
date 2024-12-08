@@ -4,6 +4,8 @@ import com.example.backend.dto.ReviewRequest;
 import com.example.backend.entity.Review;
 import com.example.backend.repository.ReviewRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -22,5 +24,9 @@ public class ReviewService {
 
     public void deleteReview(Long id){
         reviewRepository.deleteById(id);
+    }
+
+    public Page<Review> getAllReviews(int page, int size){
+        return reviewRepository.findAll(PageRequest.of(page, size));
     }
 }

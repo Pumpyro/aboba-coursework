@@ -2,8 +2,11 @@ package com.example.backend.service;
 
 import com.example.backend.dto.PartnershipRequest;
 import com.example.backend.entity.Partnership;
+import com.example.backend.entity.Review;
 import com.example.backend.repository.PartnershipRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -23,5 +26,9 @@ public class PartnershipService {
 
     public void deletePartnership(Long id){
         partnershipRepository.deleteById(id);
+    }
+
+    public Page<Partnership> getAllPartnerships(int page, int size){
+        return partnershipRepository.findAll(PageRequest.of(page, size));
     }
 }
